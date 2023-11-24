@@ -59,10 +59,15 @@ public class MainWindow extends JFrame {
             }
         });
 
-        menuGame.addActionListener(new ActionListener() {
+        menuGameSettings.addActionListener(new ActionListener() {
             @Override
             public void actionPerformed(ActionEvent e) {
-
+                var settingsPanel = new SettingsPanel();
+                int result = JOptionPane.showConfirmDialog(null,
+                        settingsPanel,
+                        "Settings",
+                        JOptionPane.OK_CANCEL_OPTION,
+                        JOptionPane.PLAIN_MESSAGE);
             }
         });
 
@@ -95,12 +100,12 @@ public class MainWindow extends JFrame {
     }
 
     private void exitDialog() {
-        int reply = JOptionPane.showConfirmDialog(MainWindow.this,
+        int result = JOptionPane.showConfirmDialog(MainWindow.this,
                 "Are you sure you want to quit?",
                 "Exit",
                 JOptionPane.YES_NO_OPTION,
                 JOptionPane.QUESTION_MESSAGE);
-        if (reply == JOptionPane.YES_OPTION) {
+        if (result == JOptionPane.YES_OPTION) {
             dispose();
         }
     }

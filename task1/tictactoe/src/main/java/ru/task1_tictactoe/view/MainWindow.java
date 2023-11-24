@@ -15,30 +15,56 @@ public class MainWindow extends JFrame {
     private static final int WINDOW_WIDTH = Integer.parseInt(AppConfig.getProperty("main.window.width"));
     private static final int WINDOW_POSX = Integer.parseInt(AppConfig.getProperty("main.window.pos.x"));
     private static final int WINDOW_POSY = Integer.parseInt(AppConfig.getProperty("main.window.pos.y"));
-    private final JButton buttonStart = new JButton("New Game");
-    private final JButton buttonExit = new JButton("Exit");
+    private static final JMenuBar menuBar = new JMenuBar();
+    private static final JMenu menuGame = new JMenu("Game");
+    private static final JMenu  menuHelp = new JMenu("Help");
+    private static final JMenuItem menuGameNew = new JMenuItem("New Game");
+    private static final JMenuItem menuGameSettings = new JMenuItem("Settings");
+    private static final JMenuItem menuGameExit = new JMenuItem("Exit");
+    private static final JMenuItem menuHelpHelp = new JMenuItem("Help");
+    private static final JMenuItem menuHelpAbout = new JMenuItem("About");
+
 
     public MainWindow(){
+        init();
+        addListeners();
+        setVisible(true);
+    }
+
+    private void init() {
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         setSize(WINDOW_WIDTH, WINDOW_HEIGHT);
         setLocation(WINDOW_POSX, WINDOW_POSY);
         setTitle(GAME_NAME);
-        //setResizable(false);
-
         setIconImage(new ImageIcon(AppConfig.getProperty("game.icon")).getImage());
 
-        var menuBar = new JMenuBar();
-        var menuGame = new JMenu("Game");
-        var menuHelp = new JMenu("Help");
+        //setResizable(false);
+
         menuBar.add(menuGame);
         menuBar.add(menuHelp);
-        var menuGameNew = new JMenuItem("New Game");
-        var menuGameSettings = new JMenuItem("Settings");
-        var menuGameExit = new JMenuItem("Exit");
         menuGame.add(menuGameNew);
         menuGame.add(menuGameSettings);
         menuGame.add(menuGameExit);
+        menuHelp.add(menuHelpHelp);
+        menuHelp.add(menuHelpAbout);
 
+        add(menuBar, BorderLayout.NORTH);
+    }
+
+    private void addListeners(){
+        menuGameNew.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+
+        menuGame.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
 
         menuGameExit.addActionListener(new ActionListener() {
             @Override
@@ -47,22 +73,25 @@ public class MainWindow extends JFrame {
             }
         });
 
+        menuHelpHelp.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+
+        menuHelpAbout.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+
+            }
+        });
+
         addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent event) {
                 exitDialog();
             }
         });
-
-
-
-        var panBottomGridLayout = new GridLayout(1, 2);
-        panBottomGridLayout.setHgap(20);
-        var panBottom = new JPanel(panBottomGridLayout);
-        panBottom.add(buttonStart);
-        panBottom.add(buttonExit);
-        add(menuBar, BorderLayout.NORTH);
-        add(panBottom, BorderLayout.SOUTH);
-        setVisible(true);
     }
 
     private void exitDialog() {

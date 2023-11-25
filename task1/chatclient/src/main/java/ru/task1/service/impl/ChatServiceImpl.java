@@ -13,6 +13,11 @@ public class ChatServiceImpl implements ChatService {
 
     @Override
     public String getMessageLog() {
-        return null;
+        return "test\n";
+    }
+
+    @Override
+    public void sendMessage(String message) {
+
     }
 }

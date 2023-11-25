@@ -6,12 +6,10 @@ import ru.task1.service.impl.ChatServiceImpl;
 
 import javax.swing.*;
 import java.awt.*;
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
-import java.awt.event.WindowAdapter;
-import java.awt.event.WindowEvent;
+import java.awt.event.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.logging.Level;
 
 public class MainWindow extends JFrame {
     private static final int WIDTH = 400;
@@ -29,11 +27,8 @@ public class MainWindow extends JFrame {
     private final JButton buttonSend = new JButton("Send");
     private final JTextArea log = new JTextArea();
     private final JList userList = new JList();
-
     private final ChatService chatService = new ChatServiceImpl();
-
-
-
+    private static boolean isServerConnected = false;
 
     public MainWindow() {
         init();
@@ -69,6 +64,7 @@ public class MainWindow extends JFrame {
         userList.setListData(new String[]{NO_CONNECTION});
         var scrollUserList = new JScrollPane(userList);
         add(scrollUserList, BorderLayout.EAST);
+        getRootPane().setDefaultButton(buttonSend);
     }
 
     private void addListeners() {
@@ -76,14 +72,37 @@ public class MainWindow extends JFrame {
             @Override
             public void actionPerformed(ActionEvent e) {
                 loginButton.setEnabled(false);
+                addrIpTextField.setEnabled(false);
+                portTextField.setEnabled(false);
+                loginTextField.setEnabled(false);
+                jPasswordField.setEnabled(false);
                 try {
                     Thread.sleep(2000);
                 } catch (InterruptedException ex) {
                     throw new RuntimeException(ex);
                 }
-
+                isServerConnected = true;
+                AppConfig.LOGGER.log(Level.INFO, "Server connected");
                 userList.remove(0);
+                log.setText("");
                 userList.setListData(chatService.findAllUsers());
+                log.setText(chatService.getMessageLog());
+            }
+        });
+
+        buttonSend.addActionListener(new ActionListener() {
+            @Override
+            public void actionPerformed(ActionEvent e) {
+                sendMessage();
+            }
+        });
+
+        messageTextField.addKeyListener(new KeyAdapter() {
+            @Override
+            public void keyPressed(KeyEvent e) {
+                if (e.getKeyCode() == KeyEvent.VK_ENTER){
+                    sendMessage();
+                }
             }
         });
 
@@ -105,4 +124,15 @@ public class MainWindow extends JFrame {
             dispose();
         }
     }
+
+    private void sendMessage() {
+        if(isServerConnected && !messageTextField.getText().isEmpty()) {
+            var message = loginTextField.getText() + ": " + messageTextField.getText() + "\n";
+            log.append(message);
+            AppConfig.LOGGER.log(Level.INFO, message);
+            messageTextField.setText("");
+            chatService.sendMessage(message);
+        }
+    }
+
 }

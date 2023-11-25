@@ -6,18 +6,23 @@ import javax.swing.event.ChangeListener;
 import java.awt.*;
 
 public class SettingsPanel extends JPanel {
+    private int fieldSize;
+    private int winLength;
     private static final String SIZE_SETTINGS_TITLE = "Difficulty";
     private static final String SET_FIELD_SIZE_LABEL = "Field size:";
     private static final String SET_FIELD_LENGTH_LABEL = "Length to win:";
     private static final JLabel setFieldSizeLabel = new JLabel(SET_FIELD_SIZE_LABEL, JLabel.LEFT);
     private static final JLabel setFieldLengthLabel = new JLabel(SET_FIELD_LENGTH_LABEL, JLabel.LEFT);
-    private static final JSlider fieldSizeLabelSlider = new JSlider(3, 10);
-    private static final JSlider fieldLengthLabelSlider = new JSlider(3, 10);
+    private static final JSlider fieldSizeSlider = new JSlider(3, 10);
+    private static final JSlider fieldLengthSlider = new JSlider(3, 10);
     private static final Insets WEST_INSETS = new Insets(5, 0, 5, 5);
     private static final Insets EAST_INSETS = new Insets(5, 5, 5, 0);
 
 
-    public SettingsPanel() {
+    public SettingsPanel(int fieldSize, int winLength) {
+        this.fieldSize = fieldSize;
+        this.winLength = winLength;
+
         init();
         addListeners();
     }
@@ -29,27 +34,37 @@ public class SettingsPanel extends JPanel {
                 BorderFactory.createEmptyBorder(5, 5, 5, 5)));
 
         var gridBagConstraints = creatGridBagConstraints(0, 0);
+
+        setFieldSizeLabel.setText(SET_FIELD_SIZE_LABEL + " " + fieldSize);
+        setFieldLengthLabel.setText(SET_FIELD_LENGTH_LABEL + " " + winLength);
+        fieldSizeSlider.setValue(fieldSize);
+        fieldLengthSlider.setMaximum(fieldSize);
+        fieldLengthSlider.setValue(winLength);
+
         add(setFieldSizeLabel, gridBagConstraints);
         gridBagConstraints = creatGridBagConstraints(0, 1);
-        add(fieldSizeLabelSlider, gridBagConstraints);
+        add(fieldSizeSlider, gridBagConstraints);
         gridBagConstraints = creatGridBagConstraints(0, 2);
         add(setFieldLengthLabel, gridBagConstraints);
         gridBagConstraints = creatGridBagConstraints(0, 3);
-        add(fieldLengthLabelSlider, gridBagConstraints);
+        add(fieldLengthSlider, gridBagConstraints);
     }
 
     private void addListeners() {
-        fieldSizeLabelSlider.addChangeListener(new ChangeListener() {
+        fieldSizeSlider.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent e) {
-                setFieldSizeLabel.setText(SET_FIELD_SIZE_LABEL + " " + fieldSizeLabelSlider.getValue());
+                fieldSize =  fieldSizeSlider.getValue();
+                setFieldSizeLabel.setText(SET_FIELD_SIZE_LABEL + " " + fieldSize);
+                fieldLengthSlider.setMaximum(fieldSize);
             }
         });
 
-        fieldLengthLabelSlider.addChangeListener(new ChangeListener() {
+        fieldLengthSlider.addChangeListener(new ChangeListener() {
             @Override
             public void stateChanged(ChangeEvent e) {
-                setFieldLengthLabel.setText(SET_FIELD_LENGTH_LABEL + " " + fieldLengthLabelSlider.getValue());
+                winLength = fieldLengthSlider.getValue();
+                setFieldLengthLabel.setText(SET_FIELD_LENGTH_LABEL + " " + winLength);
             }
         });
     }
@@ -70,4 +85,11 @@ public class SettingsPanel extends JPanel {
         return gridBagConstraints;
     }
 
+    public int getFieldSize() {
+        return fieldSize;
+    }
+
+    public int getWinLength() {
+        return winLength;
+    }
 }

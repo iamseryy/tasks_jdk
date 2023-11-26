@@ -1,8 +1,9 @@
 package ru.task1.service.impl;
 
+import ru.task1.config.AppConfig;
 import ru.task1.service.ChatService;
+import ru.task1.util.FIleUtils;
 
-import java.util.ArrayList;
 
 public class ChatServiceImpl implements ChatService {
     @Override
@@ -13,11 +14,11 @@ public class ChatServiceImpl implements ChatService {
 
     @Override
     public String getMessageLog() {
-        return "test\n";
+        return FIleUtils.readFile(AppConfig.getProperty("file.messages"));
     }
 
     @Override
     public void sendMessage(String message) {
-
+        FIleUtils.writeFile(message, AppConfig.getProperty("file.messages"));
     }
 }

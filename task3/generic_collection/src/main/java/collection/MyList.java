@@ -1,10 +1,11 @@
 package collection;
 
 import java.util.Comparator;
+import java.util.Iterator;
 import java.util.Optional;
 
 
-public interface MyList<T> {
+public interface MyList<T> extends Iterable<T>{
     boolean add(T object);
     boolean add(int index, T object);
     Optional<T> get(int index);
@@ -17,11 +18,6 @@ public interface MyList<T> {
     boolean contains(T object);
     Optional<T> set(int index, T object);
 
-
-
-
-
-
-
-
+    @Override
+    Iterator<T> iterator();
 }

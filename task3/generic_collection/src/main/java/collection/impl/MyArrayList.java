@@ -2,9 +2,7 @@ package collection.impl;
 
 import collection.MyList;
 
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.Optional;
+import java.util.*;
 
 public class MyArrayList<T> implements MyList<T> {
     private static final int DEFAULT_CAPACITY = 10;
@@ -180,6 +178,12 @@ public class MyArrayList<T> implements MyList<T> {
         return Optional.empty();
     }
 
+
+    @Override
+    public Iterator<T> iterator() {
+        return new MyArrayListIterator();
+    }
+
     @Override
     public String toString() {
         StringBuilder str = new StringBuilder();
@@ -189,5 +193,23 @@ public class MyArrayList<T> implements MyList<T> {
         }
         str.append("]");
         return str.toString();
+    }
+
+    private class MyArrayListIterator implements Iterator<T> {
+        int cursor = 0;
+
+        @Override
+        public boolean hasNext() {
+            return cursor < size;
+        }
+
+        @Override
+        public T next() {
+            if (!hasNext()) {
+                throw new NoSuchElementException();
+            }
+
+            return (T) elements[cursor++];
+        }
     }
 }

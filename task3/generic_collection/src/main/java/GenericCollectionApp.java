@@ -16,5 +16,16 @@ public class GenericCollectionApp {
         System.out.println("The youngest : " + people.max((it1, it2) -> it1.age() - it2.age()).get());
 
         people.forEach(System.out::println);
+
+
+
+        MyList<Person> otherPeople = new MyArrayList<>();
+        otherPeople.add(new Person("Ivan", 33, 180.5));
+        otherPeople.add(new Person("Max", 44, 175.5));
+        otherPeople.add(new Person("Olga", 30, 170.5));
+
+        System.out.println(people.compareList(otherPeople));
+
+
     }
 }

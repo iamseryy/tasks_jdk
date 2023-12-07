@@ -178,6 +178,20 @@ public class MyArrayList<T> implements MyList<T> {
         return Optional.empty();
     }
 
+    @Override
+    public boolean compareList(MyList<T> list) {
+        if(size != list.size()) {
+            return false;
+        }
+
+        for(int i = 0; i < size; i++) {
+            if (!elements[i].equals(list.get(i).orElse(null))) {
+                return false;
+            }
+        }
+
+        return true;
+    }
 
     @Override
     public Iterator<T> iterator() {

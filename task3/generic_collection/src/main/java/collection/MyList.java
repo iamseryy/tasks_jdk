@@ -17,6 +17,7 @@ public interface MyList<T> extends Iterable<T>{
     int indexOf(T object);
     boolean contains(T object);
     Optional<T> set(int index, T object);
+    boolean compareList(MyList<T> list);
 
     @Override
     Iterator<T> iterator();

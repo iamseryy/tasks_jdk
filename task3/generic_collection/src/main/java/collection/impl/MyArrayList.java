@@ -115,32 +115,6 @@ public class MyArrayList<T> implements MyList<T> {
     }
 
     @Override
-    public Optional<T> min(Comparator<T> comparator) {
-        if (size == 0) return Optional.empty();
-
-        int indexMin = 0;
-        for(int i = 0; i < size - 1; i++){
-            if(comparator.compare((T) elements[i], (T) elements[i + 1]) > 0){
-                indexMin = i;
-            }
-        }
-        return Optional.ofNullable((T) elements[indexMin]);
-    }
-
-    @Override
-    public Optional<T> max(Comparator<T> comparator) {
-        if (size == 0) return Optional.empty();
-
-        int indexMax = 0;
-        for(int i = 0; i < size - 1; i++){
-            if(comparator.compare((T) elements[i + 1], (T) elements[i]) > 0){
-                indexMax = i;
-            }
-        }
-        return Optional.ofNullable((T) elements[indexMax]);
-    }
-
-    @Override
     public boolean contains(Object object) {
         return indexOf(object) >= 0;
     }

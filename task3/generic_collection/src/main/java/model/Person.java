@@ -13,10 +13,6 @@ public record Person(String name, int age, double height) {
 
         var person = (Person) obj;
 
-        if (!name.equals(person.name) || age != person.age || height != person.height) {
-            return false;
-        }
-
-        return true;
+        return name.equals(person.name) && age == person.age && height == person.height;
     }
 }

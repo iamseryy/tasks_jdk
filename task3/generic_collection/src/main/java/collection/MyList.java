@@ -12,8 +12,6 @@ public interface MyList<T> extends Iterable<T>{
     Optional<T> remove(int index);
     boolean remove(T object);
     int size();
-    Optional<T> min(Comparator<T> comparator);
-    Optional<T> max(Comparator<T> comparator);
     int indexOf(T object);
     boolean contains(T object);
     Optional<T> set(int index, T object);

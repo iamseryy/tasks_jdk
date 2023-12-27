@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="CompilerConfiguration">
+    <bytecodeTargetLevel>
+      <module name="Kotlin_Problems.Topics-Mutable_Map-About_Mutable_Map" target="11" />
+      <module name="Kotlin_Problems.Topics-Mutable_Map-About_Mutable_Map.main" target="11" />
+      <module name="Kotlin_Problems.Topics-Mutable_Map-About_Mutable_Map.test" target="11" />
+      <module name="Kotlin_Problems.Topics-Mutable_Map-Add_an_element" target="11" />
+      <module name="Kotlin_Problems.Topics-Mutable_Map-Add_an_element.main" target="11" />
+      <module name="Kotlin_Problems.Topics-Mutable_Map-Add_an_element.test" target="11" />
+      <module name="Kotlin_Problems.Topics-Mutable_Map-Exam_marks" target="11" />
+      <module name="Kotlin_Problems.Topics-Mutable_Map-Exam_marks.main" target="11" />
+      <module name="Kotlin_Problems.Topics-Mutable_Map-Exam_marks.test" target="11" />
+      <module name="Kotlin_Problems.Topics-Mutable_Map-Help_the_robot" target="11" />
+      <module name="Kotlin_Problems.Topics-Mutable_Map-Help_the_robot.main" target="11" />
+      <module name="Kotlin_Problems.Topics-Mutable_Map-Help_the_robot.test" target="11" />
+      <module name="Kotlin_Problems.Topics-Mutable_Map-New_user" target="11" />
+      <module name="Kotlin_Problems.Topics-Mutable_Map-New_user.main" target="11" />
+      <module name="Kotlin_Problems.Topics-Mutable_Map-New_user.test" target="11" />
+      <module name="Kotlin_Problems.Topics-Mutable_Map-The_output_is" target="11" />
+      <module name="Kotlin_Problems.Topics-Mutable_Map-The_output_is.main" target="11" />
+      <module name="Kotlin_Problems.Topics-Mutable_Map-The_output_is.test" target="11" />
+      <module name="Kotlin_Problems.Topics-Mutable_Map-The_output_of_two_maps" target="11" />
+      <module name="Kotlin_Problems.Topics-Mutable_Map-The_output_of_two_maps.main" target="11" />
+      <module name="Kotlin_Problems.Topics-Mutable_Map-The_output_of_two_maps.test" target="11" />
+      <module name="Kotlin_Problems.Topics-Mutable_Map-Theory" target="11" />
+      <module name="Kotlin_Problems.Topics-Mutable_Map-Theory.main" target="11" />
+      <module name="Kotlin_Problems.Topics-Mutable_Map-Theory.test" target="11" />
+      <module name="Kotlin_Problems.Topics-Mutable_Map-Wish_list" target="11" />
+      <module name="Kotlin_Problems.Topics-Mutable_Map-Wish_list.main" target="11" />
+      <module name="Kotlin_Problems.Topics-Mutable_Map-Wish_list.test" target="11" />
+      <module name="Kotlin_Problems.util" target="11" />
+      <module name="Kotlin_Problems.util.main" target="11" />
+      <module name="Kotlin_Problems.util.test" target="11" />
+    </bytecodeTargetLevel>
+  </component>
+</project>

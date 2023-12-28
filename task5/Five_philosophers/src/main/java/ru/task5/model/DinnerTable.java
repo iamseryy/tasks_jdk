@@ -5,7 +5,7 @@ import java.util.concurrent.locks.Condition;
 import java.util.concurrent.locks.Lock;
 import java.util.concurrent.locks.ReentrantLock;
 
-public class DinnerTable {
+public final class DinnerTable {
     private static final String DINNER_TABLE_RESERVED = "The dinning table is reserved by %s.\n";
     private static final String PHILOSOPHER_IS_EATING = "%s is eating.\n";
     private static final String PHILOSOPHER_HAS_EATEN = "%s has just eaten. The dinning table is free.\n";

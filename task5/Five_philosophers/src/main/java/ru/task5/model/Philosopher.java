@@ -5,7 +5,7 @@ import java.util.Random;
 import java.util.concurrent.TimeUnit;
 import java.util.stream.IntStream;
 
-public class Philosopher implements Runnable{
+public final class Philosopher implements Runnable{
     private static final String THINK_ACTIVITY = "%s is thinking now.\n";
     private static final String PHILOSOPHER_WANT_EAT = "%s want to eat.\n";
     private static final int LIFE_DURATION = 3;

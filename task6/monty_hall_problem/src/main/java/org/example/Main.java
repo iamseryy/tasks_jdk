@@ -3,26 +3,49 @@ package org.example;
 import java.util.Random;
 
 public class Main {
+    private static int changeSelectionDoor = 0;
+    private static int leaveAsIs = 0;
+    private static final Random random = new Random();
+    private final static int TOTAL_GAMES = 10000;
+
     public static void main(String[] args) {
-        int switchWins = 0;
-        int stayWins = 0;
-        Random gen = new Random();
-        for(int plays = 0;plays < 32768;plays++ ){
-            int[] doors = {0,0,0};//0 is a goat, 1 is a car
-            doors[gen.nextInt(3)] = 1;//put a winner in a random door
-            int choice = gen.nextInt(3); //pick a door, any door
-            int shown; //the shown door
-            do{
-                shown = gen.nextInt(3);
-                //don't show the winner or the choice
-            }while(doors[shown] == 1 || shown == choice);
-
-            stayWins += doors[choice];//if you won by staying, count it
-
-            //the switched (last remaining) door is (3 - choice - shown), because 0+1+2=3
-            switchWins += doors[3 - choice - shown];
-        }
-        System.out.println("Switching wins " + switchWins + " times.");
-        System.out.println("Staying wins " + stayWins + " times.");
+        play();
+        printResult();
     }
+
+    private static void play() {
+        for(int i = 0; i < TOTAL_GAMES; i++){
+            var doors = initGame();
+            int playerChoice = playerMakeMove();
+            int hostChoice = hostMakeMove(doors, playerChoice);
+
+            leaveAsIs += doors[playerChoice];
+            changeSelectionDoor += doors[3 - playerChoice - hostChoice];
+        }
+    }
+
+    private static void printResult(){
+        System.out.println("Switching wins " + changeSelectionDoor + " times.");
+        System.out.println("Staying wins " + leaveAsIs + " times.");
+    }
+
+    private static int[] initGame() {
+        int[] doors = {0, 0, 0};
+        doors[random.nextInt(3)] = 1;
+        return doors;
+    }
+
+    private static int playerMakeMove(){
+        return random.nextInt(3);
+    }
+
+    private static int hostMakeMove(int[] doors, int playerChoice){
+        int hostChoice;
+        do{
+            hostChoice = random.nextInt(3);
+        } while(hostChoice == playerChoice || doors[hostChoice] == 1);
+
+        return hostChoice;
+    }
+
 }

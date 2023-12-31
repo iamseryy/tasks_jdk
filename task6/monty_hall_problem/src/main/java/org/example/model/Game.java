@@ -6,6 +6,7 @@ public class Game {
     private final Random random;
     private Statistics statistics;
 
+
     public Game(Statistics statistics) {
         this.random = new Random();
         this.statistics = statistics;
@@ -16,8 +17,8 @@ public class Game {
         int playerChoice = playerMakeMove();
         int hostChoice = hostMakeMove(doors, playerChoice);
 
-        if(doors[playerChoice] == 1) this.statistics.incrementLeaveAsIsStrategy();
-        if(doors[3 - playerChoice - hostChoice] == 1) this.statistics.incrementChangeSelectionDoorStrategy();
+        if(doors[playerChoice] == 1) this.statistics.save(Strategy.LEAVE_AS_IS);
+        if(doors[3 - playerChoice - hostChoice] == 1) this.statistics.save(Strategy.CHANGE_DOOR);
     }
 
     private int[] initGame() {

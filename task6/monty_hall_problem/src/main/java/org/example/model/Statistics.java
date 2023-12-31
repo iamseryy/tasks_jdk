@@ -1,26 +1,28 @@
 package org.example.model;
 
+import java.util.HashMap;
+
 public class Statistics {
-    private int changeSelectionDoorStrategy;
-    private int leaveAsIsStrategy;
+    private HashMap<Integer, Strategy> results;
+    private Integer gameNumber;
 
     public Statistics() {
-        this.changeSelectionDoorStrategy = 0;
-        this.leaveAsIsStrategy = 0;
+        this.results = new HashMap<>();
+        this.gameNumber = 0;
     }
 
-    public int incrementChangeSelectionDoorStrategy() {
-        return this.changeSelectionDoorStrategy++;
+    public void save(Strategy strategy) {
+        this.results.put(++this.gameNumber, strategy);
     }
 
-    public int incrementLeaveAsIsStrategy() {
-        return this.leaveAsIsStrategy++;
+    private long getResult(Strategy strategy) {
+        return results.entrySet().stream().filter(it -> it.getValue() == strategy).count();
     }
 
     @Override
     public String toString() {
         return "\nStatistics:\n" +
-                "Strategy - change the door = " + changeSelectionDoorStrategy + "\n" +
-                "Strategy - leave as is = " + leaveAsIsStrategy + "\n";
+                "Strategy - change the door = " + getResult(Strategy.CHANGE_DOOR) + "\n" +
+                "Strategy - leave as is = " + getResult(Strategy.LEAVE_AS_IS) + "\n";
     }
 }

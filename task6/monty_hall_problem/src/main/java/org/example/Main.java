@@ -5,7 +5,7 @@ import org.example.model.Statistics;
 import java.util.stream.IntStream;
 
 public class Main {
-    private final static int TOTAL_GAMES = 100000;
+    private final static int TOTAL_GAMES = 1000;
 
     public static void main(String[] args) {
         var statistics = new Statistics();
